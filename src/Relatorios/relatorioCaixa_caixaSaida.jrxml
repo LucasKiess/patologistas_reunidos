@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorioCaixa_caixaSaida" language="groovy" pageWidth="260" pageHeight="802" columnWidth="260" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="6f53f2c9-f1e6-42f9-adaa-3a4bc5a85509">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="dataInicio" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="dataFim" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select * from caixasaida where dataCaixaSaida between $P{dataInicio} and $P{dataFim}]]>
+	</queryString>
+	<field name="codCaixaSaida" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="descricaoCaixaSaida" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="valorCaixaSaida" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dataCaixaSaida" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<pageHeader>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement x="90" y="13" width="83" height="27" uuid="9211ab06-dc27-44ce-beba-1efab0006694"/>
+				<textElement>
+					<font size="16" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Despesas]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="32" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="40d741b8-bfd5-4c6b-893e-ca49e0d2dd93"/>
+				<textElement>
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descrição]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="124" y="0" width="52" height="20" uuid="a35ae7a3-2c28-4aae-a905-544e3f9f6419"/>
+				<textElement>
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="192" y="2" width="48" height="20" uuid="1a5805b4-5f45-4295-af1e-cca338a8363c"/>
+				<textElement>
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="11bc68ba-2d8b-43ae-9bd2-9aa85862d925"/>
+				<textFieldExpression><![CDATA[$F{descricaoCaixaSaida}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="124" y="0" width="52" height="20" uuid="3d8d33b5-e74f-4bfb-9c04-23d8f7ec7bd7"/>
+				<textFieldExpression><![CDATA[$F{valorCaixaSaida}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="192" y="0" width="58" height="20" uuid="399ff50b-b288-4429-81d5-323c3f223979"/>
+				<textFieldExpression><![CDATA[$F{dataCaixaSaida}.substring( 8, 10 )+"/"+$F{dataCaixaSaida}.substring( 5, 7 )+"/"+$F{dataCaixaSaida}.substring(0, 4 )]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

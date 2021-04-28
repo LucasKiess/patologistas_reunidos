@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorioFrascos_frascosSaida" language="groovy" pageWidth="210" pageHeight="802" columnWidth="210" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="83bd4000-69d8-4065-a5b6-673dccf8866a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="dataInicio" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="dataSaida" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="dataFim" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select descricaoMaterialS, sum(quantidadeSaida) as Total from saidamaterial where dataSaida between $P{dataInicio} and $P{dataFim} group by descricaoMaterialS order by descricaoMaterialS asc;]]>
+	</queryString>
+	<field name="descricaoMaterialS" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Total" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="28" splitType="Stretch">
+			<staticText>
+				<reportElement x="78" y="0" width="49" height="20" uuid="1af9eba2-cac6-425c-a778-01b9b5dabd08"/>
+				<textElement>
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Saída]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="33" splitType="Stretch">
+			<staticText>
+				<reportElement x="113" y="13" width="82" height="20" uuid="1f21bbd3-9e42-4318-9213-867e67e5905c"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Quantidade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="13" width="100" height="20" uuid="802f8b34-6a13-4a42-8366-0cea88e126a0"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Material]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<textField>
+				<reportElement x="13" y="0" width="100" height="20" uuid="16cc2eab-7d17-48db-9c98-c5427373bcd2"/>
+				<textFieldExpression><![CDATA[$F{descricaoMaterialS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="113" y="0" width="82" height="20" uuid="2e774b58-d400-4699-8c8b-c727597d2139"/>
+				<textFieldExpression><![CDATA[$F{Total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="50">
+			<staticText>
+				<reportElement x="9" y="14" width="191" height="20" uuid="8fbb38c8-1929-4b56-acbe-22be2cd3f2b7"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Enviados para hosp/consultórios]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+</jasperReport>

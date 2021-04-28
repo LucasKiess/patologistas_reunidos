@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorioCartao" language="groovy" pageWidth="950" pageHeight="595" orientation="Landscape" columnWidth="910" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a0fe7404-d459-4a78-832e-888dcf89e572">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="215"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="dataInicio" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="dataFim" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select * from pagamentocartao where data between $P{dataInicio} and $P{dataFim} order by data]]>
+	</queryString>
+	<field name="codPagamento" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="exame" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="paciente" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cpf" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="endereco" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cep" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="valor" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="data" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<title>
+		<band height="107" splitType="Stretch">
+			<image>
+				<reportElement x="20" y="0" width="162" height="105" uuid="c855938f-2c31-4f89-a9d7-247dea618e05"/>
+				<imageExpression><![CDATA["C:\\Users\\lucas\\Documents\\NetBeansProjects\\Patologistas\\src\\Relatorios\\Patologistas.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="320" y="60" width="269" height="27" uuid="62c5def0-535b-4983-9ff8-717443235546"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Relatório de Pagamentos com Cartão]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="716" y="85" width="182" height="20" uuid="8f7a7b3b-1c0e-476d-b046-d5974f0cefb4"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="716" y="12" width="43" height="20" uuid="d59b5b8e-c38d-4eaa-b3e2-85a6c0035f92"/>
+				<text><![CDATA[Período:]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement x="756" y="35" width="100" height="20" uuid="956ead29-758d-4769-93a5-a277c0720fe7"/>
+				<textFieldExpression><![CDATA[$P{dataInicio}.substring( 8, 10 )+"/"+$P{dataInicio}.substring( 5, 7 )+"/"+$P{dataInicio}.substring(0 , 4 )]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="756" y="55" width="100" height="20" uuid="c9472e9e-9aea-4af6-a81c-ecfcaa8a6b56"/>
+				<textFieldExpression><![CDATA[$P{dataFim}.substring( 8, 10 )+"/"+$P{dataFim}.substring( 5, 7 )+"/"+$P{dataFim}.substring(0 , 4 )]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="27" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="64" height="20" uuid="6fa0331c-355a-472d-953b-dcf514e37e1c"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Exame]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="67" y="0" width="162" height="20" uuid="7c845e9c-b5a7-44e4-bd03-2710c806d18a"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Paciente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="234" y="0" width="72" height="20" uuid="1476dedb-55a0-4ef5-9f98-cee90a424884"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CPF]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="311" y="0" width="380" height="20" uuid="fe5ce768-b74f-47c5-8d09-c3eb8612d732"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Endereço]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="702" y="0" width="60" height="20" uuid="c172feb1-0f72-4294-af01-1ee4e5bb2fad"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CEP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="842" y="0" width="68" height="20" uuid="51082a65-3b4e-4386-b468-d48b91931f9f"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="781" y="0" width="61" height="20" uuid="52ad8841-06cd-4a2e-a051-e4c94c6def84"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="64" height="20" uuid="e4667586-f615-4edf-a0aa-7654c6ed1e7a"/>
+				<textFieldExpression><![CDATA[$F{exame}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="67" y="0" width="162" height="20" uuid="7a392d7a-a777-41f5-bd2c-13cdec11bb9a"/>
+				<textFieldExpression><![CDATA[$F{paciente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="234" y="0" width="72" height="20" uuid="d8a99262-1be7-4bbd-914a-18a2c6c637e5"/>
+				<textFieldExpression><![CDATA[$F{cpf}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="311" y="0" width="380" height="20" uuid="1a6a6d11-9533-4d5e-8700-6eb9ba792278"/>
+				<textFieldExpression><![CDATA[$F{endereco}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="702" y="0" width="60" height="20" uuid="e23d91c7-a66d-434e-9bde-fcb36b8b62ff"/>
+				<textFieldExpression><![CDATA[$F{cep}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="842" y="0" width="68" height="20" uuid="9099cff8-0b56-45d8-8bbd-64bcac47a944"/>
+				<textFieldExpression><![CDATA[$F{data}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="781" y="0" width="61" height="20" uuid="b1ebc520-6ad4-415d-80b6-c54fdab361d2"/>
+				<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<textField>
+				<reportElement x="810" y="25" width="100" height="20" uuid="252502bc-65f1-48b7-9688-4573b3a133f8"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="263" y="22" width="402" height="20" uuid="72614876-7787-4a81-8b1c-4f2c3e93d55c"/>
+				<text><![CDATA[Patologistas Reunidos - Viamão | Rua Cir. Vaz Ferreira, 21 sala 202 - 51 3054-2638]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

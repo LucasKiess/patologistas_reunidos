@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="recibo" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5c9767e3-5a16-4be9-b116-c9f3ed27b033">
+	<property name="ireport.zoom" value="2.1435888100000033"/>
+	<property name="ireport.x" value="589"/>
+	<property name="ireport.y" value="89"/>
+	<parameter name="nome" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cpf" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="valor" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="exame" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="convenio" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="data" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select cnpj, empresa from usuarios where loginUsu = "admin"]]>
+	</queryString>
+	<field name="cnpj" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="empresa" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<pageHeader>
+		<band height="55" splitType="Stretch">
+			<staticText>
+				<reportElement x="241" y="19" width="71" height="29" uuid="dc754d47-4297-4503-8be8-3a80bcb848fb"/>
+				<textElement>
+					<font size="20" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Recibo]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="197" splitType="Stretch">
+			<textField>
+				<reportElement x="259" y="147" width="270" height="20" uuid="3bf41d84-fd97-4593-8bf6-4575bf112792"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="277" y="167" width="100" height="20" uuid="847005f1-6d8f-42b6-a163-077a150542f7"/>
+				<textFieldExpression><![CDATA[$F{cnpj}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="49" y="28" width="86" height="20" uuid="e92ffd43-6600-4cc4-a9bc-b8704da4243f"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Recebemos de ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="156" y="40" width="334" height="1" uuid="70790074-2cd0-4220-ad33-305af3861510"/>
+			</line>
+			<staticText>
+				<reportElement x="500" y="27" width="12" height="20" uuid="cbea589d-1730-413b-88aa-2a667704f3ea"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="49" y="53" width="44" height="20" uuid="6f10dd05-c801-4c6a-978e-ca975b98d989"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[CPF nº]]></text>
+			</staticText>
+			<line>
+				<reportElement x="112" y="67" width="147" height="1" uuid="c7d30aa8-cd5d-4b63-bdc0-b1e03a451d6a"/>
+			</line>
+			<staticText>
+				<reportElement x="268" y="55" width="12" height="20" uuid="d773ff4a-ecc8-4aed-bfb4-3a00cc6c2a25"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="291" y="58" width="73" height="20" uuid="4c09f9b9-0b91-4f03-b9e4-dd46a7722dd3"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[o valor de R$]]></text>
+			</staticText>
+			<line>
+				<reportElement x="372" y="69" width="117" height="1" uuid="3c9ec9d6-d8a7-4e0c-870b-a98d7c0721dc"/>
+			</line>
+			<staticText>
+				<reportElement x="500" y="56" width="12" height="20" uuid="6228c8fc-86c8-4c60-bb31-16ee7ed6c0f5"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="49" y="80" width="107" height="20" uuid="12b6b45b-ee8c-487b-a497-4989b7b279cf"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[referente ao exame ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="171" y="93" width="319" height="1" uuid="19615a40-0546-4bdb-9f78-1748b459f421"/>
+			</line>
+			<staticText>
+				<reportElement x="500" y="80" width="12" height="20" uuid="09419399-28e6-4cd9-b7e2-282121504045"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="49" y="109" width="51" height="20" uuid="7d6bf4ae-ac9e-45ab-bc84-5109c1f02e35"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[convênio]]></text>
+			</staticText>
+			<line>
+				<reportElement x="111" y="120" width="94" height="1" uuid="c09f5997-cfe5-4cfe-9dcc-c5d15991c568"/>
+			</line>
+			<staticText>
+				<reportElement x="216" y="109" width="12" height="20" uuid="da61cccb-deb3-4069-affa-9eb326ba3ed5"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="371" y="118" width="51" height="20" uuid="cef30284-f75f-45dc-8855-793c667db863"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Viamão,]]></text>
+			</staticText>
+			<line>
+				<reportElement x="426" y="130" width="63" height="1" uuid="16487d4d-d4c3-4357-805c-0dd62080ce6b"/>
+			</line>
+			<textField>
+				<reportElement x="156" y="28" width="333" height="20" uuid="689cf6d5-009f-43e7-a6b2-e8d34732e8c5"/>
+				<textFieldExpression><![CDATA[$P{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="112" y="54" width="129" height="20" uuid="9266609c-0c2a-4d38-9acd-4010150eea35"/>
+				<textFieldExpression><![CDATA[$P{cpf}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="372" y="57" width="100" height="20" uuid="538ecd06-573b-4dd6-89e8-ca02ce170888"/>
+				<textFieldExpression><![CDATA[$P{valor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="171" y="81" width="318" height="20" uuid="a339650f-e4ae-449a-910d-3bf8fddd15eb"/>
+				<textFieldExpression><![CDATA[$P{exame}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="111" y="108" width="83" height="20" uuid="313eb452-2821-4a56-af64-84860ec9d20f"/>
+				<textFieldExpression><![CDATA[$P{convenio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="428" y="118" width="92" height="20" uuid="385227f5-675b-453e-9966-b13248931bc3"/>
+				<textFieldExpression><![CDATA[$P{data}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

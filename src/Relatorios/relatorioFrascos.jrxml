@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorioFrascos" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cb7fcd05-c34e-4a28-b206-6bbac215c5f6">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="dataInicio" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="dataFim" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select loginUsu from usuarios]]>
+	</queryString>
+	<field name="loginUsu" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<title>
+		<band height="228" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="160" height="129" uuid="c822f605-5a16-4b45-944f-713f52fbf689"/>
+				<imageExpression><![CDATA["C:\\Users\\lucas\\Documents\\NetBeansProjects\\Patologistas\\src\\Relatorios\\Patologistas.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="197" y="68" width="184" height="41" uuid="261c7080-de8f-4344-83d3-92882bbe33d4"/>
+				<textElement>
+					<font fontName="Segoe UI" size="18" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Controle de Materiais]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="467" y="13" width="61" height="24" uuid="d578f2bc-5950-4e9c-8256-c9ad54095d2d"/>
+				<textElement>
+					<font fontName="Segoe UI" size="13" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Período:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="441" y="37" width="100" height="20" uuid="5c5bcf1b-aa88-4725-84c1-980ce62c0fdc"/>
+				<textFieldExpression><![CDATA[$P{dataInicio}.substring( 8, 10 )+"/"+$P{dataInicio}.substring( 5, 7 )+"/"+$P{dataInicio}.substring(0 , 4 )]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="441" y="57" width="100" height="20" uuid="b89ac9ee-c6bf-455b-b92b-b7a8da1ab1aa"/>
+				<textFieldExpression><![CDATA[$P{dataFim}.substring( 8, 10 )+"/"+$P{dataFim}.substring( 5, 7 )+"/"+$P{dataFim}.substring(0 , 4 )]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="386" y="109" width="169" height="20" uuid="56666fe5-6144-4737-a5db-ccd2d06ab6d2"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="122" splitType="Stretch">
+			<subreport isUsingCache="false">
+				<reportElement x="44" y="0" width="200" height="100" uuid="d30edb85-965a-429a-b1c2-64506de3b751"/>
+				<subreportParameter name="dataFim">
+					<subreportParameterExpression><![CDATA[$P{dataFim}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="dataInicio">
+					<subreportParameterExpression><![CDATA[$P{dataInicio}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[getClass().getResource( $P{SUBREPORT_DIR} + "Relatorios/relatorioFrascos_frascosEntrada.jasper" )]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="309" y="0" width="200" height="100" uuid="39445633-aaaa-4512-b6ec-53f649160d84"/>
+				<subreportParameter name="dataFim">
+					<subreportParameterExpression><![CDATA[$P{dataFim}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="dataInicio">
+					<subreportParameterExpression><![CDATA[$P{dataInicio}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[getClass().getResource( $P{SUBREPORT_DIR} + "Relatorios/relatorioFrascos_frascosSaida.jasper" )]]></subreportExpression>
+			</subreport>
+		</band>
+	</pageHeader>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="85" y="34" width="402" height="20" uuid="b38f07fe-bc52-45cd-8665-114fe68643da"/>
+				<text><![CDATA[Patologistas Reunidos - Viamão | Rua Cir. Vaz Ferreira, 21 sala 202 - 51 3054-2638]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

@@ -1,0 +1,47 @@
+-Valores dos exames
+-Lista telefonica
+-Caixa
+-Controle de material
+
+Banco de dados
+
+Valor dos exames
+Base: Viamão, Viamão IPE, Poa, Poa Ipe
+Cód int autoincrement, exame varchar, categoria int, valor decimal 5,2
+
+Lista telefonica
+Cód int autoincrement, nome varchar, cel varchar, tel varchar, obs varchar
+
+Caixa
+Entrada: cód int autoincrement, valor decimal 6,2 , descricao varchar, data varchar
+Saída: cód int auto increment, valor decimal 6,2 , descricao varchar, data varchar
+Total: relatório com total entrada, total saída e líquido
+
+Controle de material
+Estoque: o que tem na sala - cod int auto, descricao varchar vindo de combobox, quantidade int
+Entrada: o que receber do hospital - cod int auto, descricao varchar, quantidade int, data varchar
+Saída: o que for levado ao hospital - cod int auto, descricao varchar, quantidade int, data varchar
+Controle por data - relatório com subreport puxando das duas tabelas, entrada e saída.
+
+
+Relatórios com subreports (como fazer)
+
+
+
+banco uol
+nome do banco : labreunidos
+usuario labpatoreu2019
+senha patosis2019@
+
+banco servidor
+nome do banco: patologistas
+usuario root
+senha root
+
+
+
+
+
+
+
+

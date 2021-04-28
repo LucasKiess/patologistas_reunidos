@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorioCaixa" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="55371a2a-8bd4-4ace-91cf-2b89dd26a044">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="dataInicio" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="dataFim" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select (sum(valorCaixaEntrada) - (select sum(valorCaixaSaida) from caixasaida where dataCaixaSaida between $P{dataInicio} and $P{dataFim})) as Caixa from caixaentrada where dataCaixaEntrada between $P{dataInicio} and $P{dataFim}]]>
+	</queryString>
+	<field name="Caixa" class="java.math.BigDecimal"/>
+	<title>
+		<band height="181" splitType="Stretch">
+			<staticText>
+				<reportElement x="445" y="14" width="61" height="24" uuid="19fa0049-5efa-4d65-936f-d6681d624bc6"/>
+				<textElement>
+					<font fontName="Segoe UI" size="13" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Período:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="214" y="95" width="132" height="41" uuid="ed3ade9b-b502-4697-85e0-e75207052d63"/>
+				<textElement>
+					<font fontName="Segoe UI" size="18" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Fluxo de Caixa]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="373" y="147" width="170" height="20" uuid="036fa69e-e43a-4421-92fc-7d116c984084"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="460" y="38" width="83" height="20" uuid="3ac4b3b6-7b07-4640-95a4-ae666d23f3f1"/>
+				<textFieldExpression><![CDATA[$P{dataInicio}.substring( 8, 10 )+"/"+$P{dataInicio}.substring( 5, 7 )+"/"+$P{dataInicio}.substring(0 , 4 )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="460" y="58" width="83" height="20" uuid="2a98477b-313b-4247-be21-62e4bde5b3a7"/>
+				<textFieldExpression><![CDATA[$P{dataFim}.substring( 8, 10 )+"/"+$P{dataFim}.substring( 5, 7 )+"/"+$P{dataFim}.substring(0 , 4 )]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="11" y="14" width="175" height="153" uuid="5f432723-1098-4486-8032-b14658c74a8b"/>
+				<imageExpression><![CDATA["C:\\Users\\lucas\\Documents\\NetBeansProjects\\Patologistas\\src\\Relatorios\\Patologistas.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<detail>
+		<band height="151">
+			<subreport>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="11" y="14" width="249" height="123" uuid="3f53f996-a754-40f8-9382-d1afbfe5f8c7"/>
+				<subreportParameter name="dataFim">
+					<subreportParameterExpression><![CDATA[$P{dataFim}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="dataInicio">
+					<subreportParameterExpression><![CDATA[$P{dataInicio}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[getClass().getResource( $P{SUBREPORT_DIR} + "Relatorios/relatorioCaixa_caixaEntrada.jasper" )]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="294" y="14" width="249" height="123" uuid="384776de-c2c1-40a3-92a4-254671884356"/>
+				<subreportParameter name="dataFim">
+					<subreportParameterExpression><![CDATA[$P{dataFim}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="dataInicio">
+					<subreportParameterExpression><![CDATA[$P{dataInicio}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[getClass().getResource( $P{SUBREPORT_DIR} + "Relatorios/relatorioCaixa_caixaSaida.jasper" )]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="65" splitType="Stretch">
+			<rectangle>
+				<reportElement x="26" y="7" width="502" height="53" uuid="d4efacd5-5437-49a9-8e4c-6e4cba0ed7f2"/>
+				<graphicElement>
+					<pen lineStyle="Double"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement x="424" y="34" width="100" height="20" uuid="0985f691-0c79-41bc-b8ca-017e849a3d99"/>
+				<textFieldExpression><![CDATA[$F{Caixa}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="424" y="14" width="100" height="20" uuid="e7c844b0-362c-4af4-88fa-f4999312b552"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Líquido]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="51" y="10" width="105" height="47" uuid="bb43b85b-4b5d-4229-be8f-c0128bcfbd48"/>
+				<subreportParameter name="dataFim">
+					<subreportParameterExpression><![CDATA[$P{dataFim}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="dataInicio">
+					<subreportParameterExpression><![CDATA[$P{dataInicio}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[getClass().getResource( $P{SUBREPORT_DIR} + "Relatorios/relatorioCaixa_caixaTotalEntrada.jasper" )]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="186" y="10" width="106" height="47" uuid="f0c18fca-54f0-4944-98dc-1a2ca122f8c9"/>
+				<subreportParameter name="dataFim">
+					<subreportParameterExpression><![CDATA[$P{dataFim}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="dataInicio">
+					<subreportParameterExpression><![CDATA[$P{dataInicio}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[getClass().getResource( $P{SUBREPORT_DIR} + "Relatorios/relatorioCaixa_caixaTotalSaida.jasper" )]]></subreportExpression>
+			</subreport>
+			<textField>
+				<reportElement x="537" y="40" width="15" height="20" uuid="11602690-1cb2-4e3b-9ecb-7af04102de66"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="81" y="24" width="402" height="20" uuid="9456a902-3913-4109-ab99-c60cb6fd2c3c"/>
+				<text><![CDATA[Patologistas Reunidos - Viamão | Rua Cir. Vaz Ferreira, 21 sala 202 - 51 3054-2638]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>
